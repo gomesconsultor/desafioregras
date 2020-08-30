@@ -1,0 +1,10 @@
+name: CI
+on [push, pull_request]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - use: actions/chechout@v2
+            - run: docker-compose up -d
+            - run: docker exec micro-api-app dockerize -timeout=200ms -wait=http://localhost:300/
+            - run: docker exec micro-api-app npm run test 
