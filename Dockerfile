@@ -15,6 +15,8 @@ COPY --chown=node package*.json ./
 
 RUN npm install
 
+RUN ls
+
 COPY --chown=node ./ .
 
 RUN npm run build
